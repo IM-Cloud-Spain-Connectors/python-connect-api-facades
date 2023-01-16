@@ -1,0 +1,340 @@
+{
+  "id": "PR-8790-0160-2196-001",
+  "type": "purchase",
+  "note": "",
+  "asset": {
+    "id": "AS-8790-0160-2196",
+    "status": "processing",
+    "external_id": "LANHCJK19Q",
+    "external_uid": "9bf07552-6844-47ad-9e20-429ae0686094",
+    "product": {
+      "id": "PRD-568-313-088",
+      "icon": "/media/VA-610-138/PRD-568-313-088/media/PRD-568-313-088-logo_HHVSMKC.png",
+      "name": "Cat as a Service",
+      "status": "published"
+    },
+    "connection": {
+      "id": "CT-0000-0000-0000",
+      "type": "preview",
+      "provider": {
+        "id": "PA-800-926",
+        "name": "IMC Gamma Team Provider"
+      },
+      "vendor": {
+        "id": "VA-610-138",
+        "name": "IMC Gamma Team Vendor"
+      },
+      "hub": {
+        "id": "HB-0000-0000",
+        "name": "None"
+      }
+    },
+    "events": {
+      "created": {
+        "at": "2021-12-23T09:09:25+00:00"
+      },
+      "updated": {
+        "at": "2021-12-23T09:09:25+00:00"
+      }
+    },
+    "items": [
+      {
+        "id": "PRD_568_313_088_0001",
+        "global_id": "PRD-568-313-088-0001",
+        "mpn": "MPN-CAT-IMG",
+        "old_quantity": "0",
+        "quantity": "10",
+        "type": "Units",
+        "display_name": "Cat Image",
+        "period": "Monthly",
+        "item_type": "Reservation"
+      }
+    ],
+    "params": [
+      {
+        "id": "CATEGORIES",
+        "name": "CATEGORIES",
+        "type": "checkbox",
+        "phase": "ordering",
+        "description": "Cat image category.",
+        "value": "",
+        "value_error": "",
+        "title": "Categories",
+        "constraints": {
+          "meta": {
+            "choices": [
+              {
+                "label": "Space",
+                "value": "1"
+              },
+              {
+                "label": "Boxes",
+                "value": "5"
+              },
+              {
+                "label": "Sunglasses",
+                "value": "4"
+              },
+              {
+                "label": "Ties",
+                "value": "7"
+              },
+              {
+                "label": "Sinks",
+                "value": "14"
+              },
+              {
+                "label": "Clothes",
+                "value": "15"
+              }
+            ]
+          },
+          "required": false
+        },
+        "structured_value": {
+          "1": true,
+          "4": true,
+          "5": false,
+          "7": false,
+          "14": false,
+          "15": false
+        },
+        "value_choices": [
+          {
+            "label": "Space",
+            "value": "1"
+          },
+          {
+            "label": "Boxes",
+            "value": "5"
+          },
+          {
+            "label": "Sunglasses",
+            "value": "4"
+          },
+          {
+            "label": "Ties",
+            "value": "7"
+          },
+          {
+            "label": "Sinks",
+            "value": "14"
+          },
+          {
+            "label": "Clothes",
+            "value": "15"
+          }
+        ]
+      },
+      {
+        "id": "CAT_SUBSCRIPTION_ID",
+        "name": "CAT_SUBSCRIPTION_ID",
+        "type": "text",
+        "phase": "fulfillment",
+        "description": "Cat Service Subscription ID.",
+        "value": "",
+        "value_error": "",
+        "title": "Subscription ID",
+        "constraints": {
+          "placeholder": "Subscription ID",
+          "hint": "Cat Service Subscription ID.",
+          "meta": {},
+          "required": true,
+          "reconciliation": false
+        }
+      },
+      {
+        "id": "ORDER_TYPE",
+        "name": "ORDER_TYPE",
+        "type": "choice",
+        "phase": "ordering",
+        "description": "Cat images order type.",
+        "value": "RANDOM",
+        "value_error": "",
+        "title": "Order Type",
+        "constraints": {
+          "meta": {
+            "choices": [
+              {
+                "label": "Ascendant",
+                "value": "ASC",
+                "default": true
+              },
+              {
+                "label": "Descendant",
+                "value": "DESC"
+              },
+              {
+                "label": "Random",
+                "value": "RANDOM"
+              }
+            ]
+          },
+          "required": false
+        },
+        "value_choices": [
+          {
+            "label": "Ascendant",
+            "value": "ASC",
+            "default": true
+          },
+          {
+            "label": "Descendant",
+            "value": "DESC"
+          },
+          {
+            "label": "Random",
+            "value": "RANDOM"
+          }
+        ]
+      }
+    ],
+    "tiers": {
+      "customer": {
+        "id": "TA-1188-9782-5267",
+        "version": 2,
+        "type": "customer",
+        "external_uid": "7699af98-ff52-44ed-ac03-2ab818a8b4cb",
+        "parent": {
+          "id": "TA-7155-0491-6708"
+        },
+        "owner": {
+          "id": "VA-610-138",
+          "name": "IMC Gamma Team Vendor"
+        },
+        "scopes": [
+          "customer"
+        ],
+        "hub": {
+          "id": "HB-0000-0000",
+          "name": "None"
+        },
+        "events": {
+          "created": {
+            "at": "2021-08-09T08:17:25+00:00",
+            "by": {
+              "id": "UR-772-063-891",
+              "name": "Unay Santisteban"
+            }
+          },
+          "updated": {
+            "at": "2021-08-09T08:17:25+00:00",
+            "by": {
+              "id": "UR-772-063-891",
+              "name": "Unay Santisteban"
+            }
+          }
+        },
+        "contact_info": {
+          "address_line1": "Walter Junctions",
+          "address_line2": "Clementina Turnpike",
+          "city": "Jelenia Góra",
+          "state": "Dolnoslaskie",
+          "postal_code": "58-500",
+          "country": "PL",
+          "contact": {
+            "first_name": "Tito",
+            "last_name": "Raynor",
+            "email": "ruben.sebrango+Tito_Raynor@ingrammicro.com",
+            "phone_number": {
+              "country_code": "+48",
+              "area_code": "665",
+              "phone_number": "558902",
+              "extension": ""
+            }
+          }
+        }
+      },
+      "tier1": {
+        "id": "TA-7155-0491-6708",
+        "version": 2,
+        "type": "reseller",
+        "external_uid": "82909d61-5655-43bc-a3bc-703bd3d372e5",
+        "owner": {
+          "id": "VA-610-138",
+          "name": "IMC Gamma Team Vendor"
+        },
+        "scopes": [
+          "tier1"
+        ],
+        "hub": {
+          "id": "HB-0000-0000",
+          "name": "None"
+        },
+        "events": {
+          "created": {
+            "at": "2021-08-09T08:17:24+00:00",
+            "by": {
+              "id": "UR-772-063-891",
+              "name": "Unay Santisteban"
+            }
+          },
+          "updated": {
+            "at": "2021-08-09T08:17:24+00:00",
+            "by": {
+              "id": "UR-772-063-891",
+              "name": "Unay Santisteban"
+            }
+          }
+        },
+        "contact_info": {
+          "address_line1": "Walter Junctions",
+          "address_line2": "Clementina Turnpike",
+          "city": "Jelenia Góra",
+          "state": "Dolnoslaskie",
+          "postal_code": "58-500",
+          "country": "PL",
+          "contact": {
+            "first_name": "Tito",
+            "last_name": "Raynor",
+            "email": "ruben.sebrango+Tito_Raynor@ingrammicro.com",
+            "phone_number": {
+              "country_code": "+48",
+              "area_code": "665",
+              "phone_number": "558902",
+              "extension": ""
+            }
+          }
+        }
+      },
+      "tier2": {}
+    },
+    "configuration": {
+      "params": []
+    },
+    "marketplace": {
+      "id": "MP-45818",
+      "name": "Adobe Cloud Marketplace"
+    },
+    "contract": {
+      "id": "CRD-00000-00000-00000",
+      "name": "None"
+    }
+  },
+  "reason": "",
+  "status": "pending",
+  "created": "2021-12-23T09:09:25+00:00",
+  "updated": "2021-12-23T09:09:25+00:00",
+  "answered": false,
+  "assignee": "",
+  "activation_key": "",
+  "previous_approved_request": null,
+  "effective_date": null,
+  "planned_date": null,
+  "events": {
+    "created": {
+      "at": "2021-12-23T09:09:25+00:00"
+    },
+    "updated": {
+      "at": "2021-12-23T09:09:25+00:00"
+    }
+  },
+  "marketplace": {
+    "id": "MP-45818",
+    "name": "Adobe Cloud Marketplace"
+  },
+  "contract": {
+    "id": "CRD-00000-00000-00000",
+    "name": "None"
+  }
+}
