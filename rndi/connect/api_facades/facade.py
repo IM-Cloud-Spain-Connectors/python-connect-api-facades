@@ -7,10 +7,12 @@ from typing import Union
 
 from connect.client import AsyncConnectClient, ConnectClient
 from rndi.connect.api_facades.assets.mixins import WithAssetFacade
+from rndi.connect.api_facades.tier_configurations.mixins import WithTierConfigurationFacade
 
 
 class ConnectOpenAPIFacade(
     WithAssetFacade,
+    WithTierConfigurationFacade,
 ):
     def __init__(self, client: Union[ConnectClient, AsyncConnectClient]):
         self._client = client

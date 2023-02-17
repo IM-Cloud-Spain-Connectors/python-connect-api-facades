@@ -1,0 +1,170 @@
+{
+  "id": "TCR-000-000-000-001",
+  "type": "setup",
+  "status": "pending",
+  "configuration": {
+    "id": "TC-000-000-001",
+    "name": "Configuration of TA-0000-0000-0001",
+    "account": {
+      "id": "TA-0000-0000-0000",
+      "name": "A reseller name",
+      "type": "reseller",
+      "external_id": "11111",
+      "external_uid": "abd12345-67ea-41c9-85fd-077b1dd6f129",
+      "contact_info": {
+        "address_line1": "Super Street",
+        "address_line2": "In the Hood",
+        "city": "Tokyo",
+        "state": "Tokyo",
+        "postal_code": "100-0000",
+        "country": "JP",
+        "contact": {
+          "first_name": "Monkey",
+          "last_name": "D. Luffy",
+          "email": "someemail@catchall.infra.im",
+          "phone_number": {
+            "country_code": "+81",
+            "area_code": "312",
+            "phone_number": "345678",
+            "extension": ""
+          }
+        }
+      }
+    },
+    "product": {
+      "id": "PRD-000-000-000",
+      "icon": "/media/VA-000-000/PRD-000-000-000/media/PRD-000-000-000-logo.png",
+      "name": "A product name",
+      "status": "published"
+    },
+    "tier_level": 1,
+    "connection": {
+      "id": "CT-0000-0000-0000",
+      "type": "preview",
+      "provider": {
+        "id": "PA-000-000",
+        "name": "IMC Gamma Team Provider"
+      },
+      "vendor": {
+        "id": "VA-000-000",
+        "name": "IMC Gamma Team Vendor"
+      },
+      "hub": {
+        "id": "HB-0000-0000",
+        "name": "None"
+      }
+    },
+    "events": {
+      "created": {
+        "at": "2022-03-25T13:11:59+00:00"
+      },
+      "updated": {
+        "at": "2022-03-25T13:11:59+00:00"
+      }
+    },
+    "params": [
+      {
+        "id": "sub_reseller_account_id",
+        "title": "Sub Reseller Zoom Account ID.",
+        "description": "Sub Reseller Zoom Account ID.",
+        "type": "text",
+        "scope": "tier1",
+        "phase": "ordering",
+        "hint": "",
+        "placeholder": "Sub Reseller Account ID",
+        "constraints": {
+          "required": false,
+          "hidden": false,
+          "unique": false
+        }
+      }
+    ],
+    "open_request": {
+      "id": "TCR-000-000-000-001"
+    },
+    "status": "processing",
+    "configuration": {
+      "params": []
+    },
+    "marketplace": {
+      "id": "MP-15233",
+      "name": "IM - Switzerland",
+      "icon": "/media/PA-800-926/marketplaces/MP-15233/icon.png"
+    }
+  },
+  "events": {
+    "created": {
+      "at": "2022-03-25T13:11:59+00:00",
+      "by": {
+        "id": "UR-000-000-000",
+        "name": "Some Asignee"
+      }
+    },
+    "updated": {
+      "at": "2022-03-25T13:12:15+00:00",
+      "by": {
+        "id": "UR-000-000-000",
+        "name": "Some Asignee"
+      }
+    },
+    "pended": {
+      "at": "2022-03-25T13:12:15+00:00",
+      "by": {
+        "id": "UR-000-000-000",
+        "name": "Some Asignee"
+      }
+    }
+  },
+  "params": [
+    {
+      "value": "111111",
+      "title": "Ordering parameter.",
+      "description": "An ordering parameter",
+      "type": "text",
+      "scope": "tier1",
+      "phase": "ordering",
+      "hint": "",
+      "placeholder": "This is an ordering parameter",
+      "constraints": {
+        "required": false,
+        "hidden": false,
+        "unique": false
+      },
+      "id": "my_ordering_parameter"
+    }
+  ],
+  "assignee": {
+    "id": "UR-000-000-001",
+    "name": "Some Asignee"
+  },
+  "environment": "preview",
+  "tiers": {
+    "tier1": {
+      "id": "TA-0000-0000-0000",
+      "name": "A Reseller",
+      "type": "reseller",
+      "external_id": "11111",
+      "external_uid": "abd12345-67ea-41c9-85fd-077b1dd6f129",
+      "contact_info": {
+        "address_line1": "Street",
+        "address_line2": "In the Hood",
+        "city": "Tokyo",
+        "state": "Tokyo",
+        "postal_code": "100-0000",
+        "country": "JP",
+        "contact": {
+          "first_name": "Monkey",
+          "last_name": "D. Luffy",
+          "email": "someemail@catchall.infra.im",
+          "phone_number": {
+            "country_code": "+81",
+            "area_code": "311",
+            "phone_number": "111111",
+            "extension": ""
+          }
+        }
+      }
+    },
+    "tier2": null
+  }
+}
