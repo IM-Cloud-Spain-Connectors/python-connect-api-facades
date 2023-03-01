@@ -1,6 +1,6 @@
-import pytest
 import os
 
+import pytest
 from connect.client import ClientError
 from rndi.connect.business_objects.adapters import Asset, Request
 from rndi.connect.api_facades.facade import ConnectOpenAPIFacade
@@ -14,7 +14,7 @@ def test_asset_helper_should_retrieve_an_asset_by_id(sync_client_factory, respon
     asset.with_id('AS-9091-4850-9712')
 
     client = sync_client_factory([
-        response_factory(value=asset.raw(), status=200)
+        response_factory(value=asset.raw(), status=200),
     ])
 
     asset = ConnectOpenAPIFacade(client).find_asset('AS-9091-4850-9712')
@@ -34,7 +34,7 @@ def test_asset_helper_should_retrieve_an_asset_request_by_id(sync_client_factory
     request.with_asset(asset)
 
     client = sync_client_factory([
-        response_factory(value=request.raw(), status=200)
+        response_factory(value=request.raw(), status=200),
     ])
 
     request = ConnectOpenAPIFacade(client).find_asset_request('PR-9091-4850-9712-001')
@@ -55,7 +55,7 @@ def test_asset_helper_should_approve_an_asset_request(sync_client_factory, respo
     request.with_asset(asset)
 
     client = sync_client_factory([
-        response_factory(value=request.raw(), status=200)
+        response_factory(value=request.raw(), status=200),
     ])
 
     asset = request.asset()
@@ -79,13 +79,13 @@ def test_asset_helper_should_fail_approving_an_asset_request(sync_client_factory
         status_code=400,
         error_code="VAL_001",
         errors=[
-            "effective_date: Datetime has wrong format. Use one of these formats "
-            "instead: YYYY-MM-DDThh:mm[:ss[.uuuuuu]][+HH:MM|-HH:MM|Z]."
-        ]
+            "effective_date: Datetime has wrong format. Use one of these formats ",
+            "instead: YYYY-MM-DDThh:mm[:ss[.uuuuuu]][+HH:MM|-HH:MM|Z].",
+        ],
     )
 
     client = sync_client_factory([
-        response_factory(exception=exception, status=exception.status_code)
+        response_factory(exception=exception, status=exception.status_code),
     ])
 
     request = Request()
@@ -111,7 +111,7 @@ def test_asset_helper_should_fail_an_asset_request(sync_client_factory, response
     request.with_reason(reason)
 
     client = sync_client_factory([
-        response_factory(value=request.raw(), status=200)
+        response_factory(value=request.raw(), status=200),
     ])
 
     request = Request()
@@ -131,11 +131,11 @@ def test_asset_helper_should_fail_failing_an_asset_request(sync_client_factory, 
         message=BAD_REQUEST_400,
         status_code=400,
         error_code="REQ_005",
-        errors=["Missed fields: reason."]
+        errors=["Missed fields: reason."],
     )
 
     client = sync_client_factory([
-        response_factory(exception=exception, status=exception.status_code)
+        response_factory(exception=exception, status=exception.status_code),
     ])
 
     request = Request()
@@ -158,7 +158,7 @@ def test_asset_helper_should_inquire_an_asset_request(sync_client_factory, respo
     request.with_asset(asset)
 
     client = sync_client_factory([
-        response_factory(value=request.raw(), status=200)
+        response_factory(value=request.raw(), status=200),
     ])
 
     request = Request()
@@ -179,11 +179,11 @@ def test_asset_helper_should_fail_inquiring_an_asset_request(sync_client_factory
         status_code=400,
         error_code="REQ_003",
         errors=[
-            "For marking request to inquiring status at least one parameter should be marked as invalid."]
+            "For marking request to inquiring status at least one parameter should be marked as invalid."],
     )
 
     client = sync_client_factory([
-        response_factory(exception=exception, status=exception.status_code)
+        response_factory(exception=exception, status=exception.status_code),
     ])
 
     request = Request()
@@ -205,14 +205,14 @@ def test_asset_helper_should_update_a_request_asset_params(
     after_update.with_asset(asset)
 
     client = sync_client_factory([
-        response_factory(value=after_update.raw(), status=200)
+        response_factory(value=after_update.raw(), status=200),
     ])
 
     request = Request(load_json(os.path.dirname(__file__) + ASSET_REQUEST_FILE))
 
     request = ConnectOpenAPIFacade(client).update_asset_request_parameters(request, [{
         'id': 'CAT_SUBSCRIPTION_ID',
-        'value': 'AS-8790-0160-2196'
+        'value': 'AS-8790-0160-2196',
     }])
 
     assert request.asset().param('CAT_SUBSCRIPTION_ID', 'value') == 'AS-8790-0160-2196'
@@ -228,13 +228,13 @@ def test_asset_helper_should_raise_exception_on_updating_request_asset_params(
         status_code=400,
         error_code="REQ_003",
         errors=[
-            "Only pending, draft or inquiring Fulfillments "
-            "with enabled validation capability can be updated."
-        ]
+            "Only pending, draft or inquiring Fulfillments ",
+            "with enabled validation capability can be updated.",
+        ],
     )
 
     client = sync_client_factory([
-        response_factory(exception=exception, status=exception.status_code)
+        response_factory(exception=exception, status=exception.status_code),
     ])
 
     request = Request(load_json(os.path.dirname(__file__) + ASSET_REQUEST_FILE))
@@ -242,5 +242,5 @@ def test_asset_helper_should_raise_exception_on_updating_request_asset_params(
     with pytest.raises(ClientError):
         ConnectOpenAPIFacade(client).update_asset_request_parameters(request, [{
             'id': 'CAT_SUBSCRIPTION_ID',
-            'value': 'AS-8790-0160-2196'
+            'value': 'AS-8790-0160-2196',
         }])

@@ -2,8 +2,7 @@ import os
 
 import pytest
 from connect.client import ClientError
-from rndi.connect.business_objects.adapters import TierConfiguration, Request
-
+from rndi.connect.business_objects.adapters import Request, TierConfiguration
 from rndi.connect.api_facades.facade import ConnectOpenAPIFacade
 
 BAD_REQUEST_400 = '400 Bad Request'
@@ -13,14 +12,14 @@ TIER_CONFIG_REQUEST_FILE = '/request_tier_config.json'
 
 def test_tier_configuration_service_should_retrieve_an_tier_configuration_by_id(
         sync_client_factory,
-        response_factory
+        response_factory,
 ):
     tier_configuration_id = 'TC-0000-0000-0000'
     tier_configuration = Request()
     tier_configuration.with_id(tier_configuration_id)
 
     client = sync_client_factory([
-        response_factory(value=tier_configuration.raw(), status=200)
+        response_factory(value=tier_configuration.raw(), status=200),
     ])
 
     tier_configuration = ConnectOpenAPIFacade(client).find_tier_configuration(tier_configuration_id)
@@ -31,7 +30,7 @@ def test_tier_configuration_service_should_retrieve_an_tier_configuration_by_id(
 
 def test_tier_configuration_service_should_fail_finding_an_tier_configuration(
         sync_client_factory,
-        response_factory
+        response_factory,
 ):
     tier_configuration_id = 'TC-0000-0000-0000'
 
@@ -39,11 +38,11 @@ def test_tier_configuration_service_should_fail_finding_an_tier_configuration(
         message=NOT_FOUND,
         status_code=404,
         error_code="VAL_001",
-        errors=[NOT_FOUND]
+        errors=[NOT_FOUND],
     )
 
     client = sync_client_factory([
-        response_factory(exception=exception, status=exception.status_code)
+        response_factory(exception=exception, status=exception.status_code),
     ])
 
     with pytest.raises(ClientError):
@@ -52,7 +51,7 @@ def test_tier_configuration_service_should_fail_finding_an_tier_configuration(
 
 def test_tier_configuration_service_should_retrieve_an_tier_configuration_request_by_id(
         sync_client_factory,
-        response_factory
+        response_factory,
 ):
     tcr_id = 'TCR-0000-0000-0000-001'
     tc_id = 'TC-0000-0000-0000'
@@ -66,7 +65,7 @@ def test_tier_configuration_service_should_retrieve_an_tier_configuration_reques
     request.with_tier_configuration(tier_configuration)
 
     client = sync_client_factory([
-        response_factory(value=request.raw(), status=200)
+        response_factory(value=request.raw(), status=200),
     ])
 
     request = ConnectOpenAPIFacade(client).find_tier_configuration_request(tcr_id)
@@ -78,7 +77,7 @@ def test_tier_configuration_service_should_retrieve_an_tier_configuration_reques
 
 def test_tier_configuration_service_should_approve_an_tier_configuration_request(
         sync_client_factory,
-        response_factory
+        response_factory,
 ):
     tcr_id = 'TCR-0000-0000-0000-001'
     tc_id = 'TC-0000-0000-0000'
@@ -93,7 +92,7 @@ def test_tier_configuration_service_should_approve_an_tier_configuration_request
     request.with_tier_configuration(tier_configuration)
 
     client = sync_client_factory([
-        response_factory(value=request.raw(), status=200)
+        response_factory(value=request.raw(), status=200),
     ])
 
     tier_configuration = request.tier_configuration()
@@ -115,20 +114,20 @@ def test_tier_configuration_service_should_approve_an_tier_configuration_request
 
 def test_tier_configuration_service_should_fail_approving_an_tier_configuration_request(
         sync_client_factory,
-        response_factory
+        response_factory,
 ):
     exception = ClientError(
         message=BAD_REQUEST_400,
         status_code=400,
         error_code="VAL_001",
         errors=[
-            "effective_date: Datetime has wrong format. Use one of these formats "
-            "instead: YYYY-MM-DDThh:mm[:ss[.uuuuuu]][+HH:MM|-HH:MM|Z]."
-        ]
+            "effective_date: Datetime has wrong format. Use one of these formats ",
+            "instead: YYYY-MM-DDThh:mm[:ss[.uuuuuu]][+HH:MM|-HH:MM|Z].",
+        ],
     )
 
     client = sync_client_factory([
-        response_factory(exception=exception, status=exception.status_code)
+        response_factory(exception=exception, status=exception.status_code),
     ])
 
     request = Request()
@@ -141,7 +140,7 @@ def test_tier_configuration_service_should_fail_approving_an_tier_configuration_
 
 def test_tier_configuration_service_should_fail_an_tier_configuration_request(
         sync_client_factory,
-        response_factory
+        response_factory,
 ):
     reason = 'Get better'
     tc_id = 'TC-0000-0000-0000-001'
@@ -158,7 +157,7 @@ def test_tier_configuration_service_should_fail_an_tier_configuration_request(
     request.with_reason(reason)
 
     client = sync_client_factory([
-        response_factory(value=request.raw(), status=200)
+        response_factory(value=request.raw(), status=200),
     ])
 
     request = Request()
@@ -175,7 +174,7 @@ def test_tier_configuration_service_should_fail_an_tier_configuration_request(
 
 def test_tier_configuration_service_should_fail_an_tier_configuration_request_custom_success(
         sync_client_factory,
-        response_factory
+        response_factory,
 ):
     reason = 'Get better'
     tc_id = 'TC-0000-0000-0000-001'
@@ -192,7 +191,7 @@ def test_tier_configuration_service_should_fail_an_tier_configuration_request_cu
     request.with_reason(reason)
 
     client = sync_client_factory([
-        response_factory(value=request.raw(), status=200)
+        response_factory(value=request.raw(), status=200),
     ])
 
     request = Request()
@@ -203,7 +202,7 @@ def test_tier_configuration_service_should_fail_an_tier_configuration_request_cu
     request = ConnectOpenAPIFacade(client).fail_tier_configuration_request(
         request,
         reason,
-        on_success=lambda x: x.with_reason(reason)
+        on_success=lambda x: x.with_reason(reason),
     )
 
     assert request.id() == tcr_id
@@ -213,17 +212,17 @@ def test_tier_configuration_service_should_fail_an_tier_configuration_request_cu
 
 def test_tier_configuration_service_should_fail_failing_an_tier_configuration_request(
         sync_client_factory,
-        response_factory
+        response_factory,
 ):
     exception = ClientError(
         message=BAD_REQUEST_400,
         status_code=400,
         error_code="REQ_005",
-        errors=["Missed fields: reason."]
+        errors=["Missed fields: reason."],
     )
 
     client = sync_client_factory([
-        response_factory(exception=exception, status=exception.status_code)
+        response_factory(exception=exception, status=exception.status_code),
     ])
 
     request = Request()
@@ -236,17 +235,17 @@ def test_tier_configuration_service_should_fail_failing_an_tier_configuration_re
 
 def test_tier_configuration_service_fail_failing_an_tier_configuration_request_with_custom_error(
         sync_client_factory,
-        response_factory
+        response_factory,
 ):
     exception = ClientError(
         message=BAD_REQUEST_400,
         status_code=400,
         error_code="REQ_005",
-        errors=["Missed fields: reason."]
+        errors=["Missed fields: reason."],
     )
 
     client = sync_client_factory([
-        response_factory(exception=exception, status=exception.status_code)
+        response_factory(exception=exception, status=exception.status_code),
     ])
 
     request = Request()
@@ -275,11 +274,11 @@ def test_tier_configuration_service_should_fail_updating_a_request_tier_configur
         message=BAD_REQUEST_400,
         status_code=400,
         error_code="REQ_005",
-        errors=["Missed fields: reason."]
+        errors=["Missed fields: reason."],
     )
 
     client = sync_client_factory([
-        response_factory(exception=exception, status=exception.status_code)
+        response_factory(exception=exception, status=exception.status_code),
     ])
 
     with pytest.raises(ClientError):
@@ -287,8 +286,8 @@ def test_tier_configuration_service_should_fail_updating_a_request_tier_configur
             initial_request,
             [{
                 'id': 'CAT_SUBSCRIPTION_ID',
-                'value': 'AS-0000-0000-0001'
-            }]
+                'value': 'AS-0000-0000-0001',
+            }],
         )
 
 
@@ -308,15 +307,15 @@ def test_tier_configuration_service_should_update_a_request_tier_configuration_p
     updated_request.with_tier_configuration(tier_configuration)
 
     client = sync_client_factory([
-        response_factory(value=updated_request.raw(), status=200)
+        response_factory(value=updated_request.raw(), status=200),
     ])
 
     request = ConnectOpenAPIFacade(client).update_tier_configuration_request_parameters(
         initial_request,
         [{
             'id': 'CAT_SUBSCRIPTION_ID',
-            'value': 'AS-0000-0000-0001'
-        }]
+            'value': 'AS-0000-0000-0001',
+        }],
     )
 
     assert request.tier_configuration().param('CAT_SUBSCRIPTION_ID', 'value') == 'AS-0000-0000-0001'
@@ -338,16 +337,16 @@ def test_tier_configuration_service_should_update_tier_configuration_params_with
     updated_request.with_tier_configuration(tier_configuration)
 
     client = sync_client_factory([
-        response_factory(value=updated_request.raw(), status=200)
+        response_factory(value=updated_request.raw(), status=200),
     ])
 
     request = ConnectOpenAPIFacade(client).update_tier_configuration_request_parameters(
         initial_request,
         [{
             'id': 'CAT_SUBSCRIPTION_ID',
-            'value': 'AS-0000-0000-0001'
+            'value': 'AS-0000-0000-0001',
         }],
-        on_success=lambda r: r
+        on_success=lambda r: r,
     )
 
     assert request.tier_configuration().param('CAT_SUBSCRIPTION_ID', 'value') == 'AS-0000-0000-0001'
@@ -355,7 +354,7 @@ def test_tier_configuration_service_should_update_tier_configuration_params_with
 
 def test_tier_configuration_service_should_return_custom_error_on_updating_parameters(
         sync_client_factory,
-        response_factory
+        response_factory,
 ):
     tcr_id = 'TCR-0000-0000-0000-001'
     tc_id = 'TC-0000-0000-0000'
@@ -372,11 +371,11 @@ def test_tier_configuration_service_should_return_custom_error_on_updating_param
         message=BAD_REQUEST_400,
         status_code=400,
         error_code="REQ_005",
-        errors=["Missed fields: reason."]
+        errors=["Missed fields: reason."],
     )
 
     client = sync_client_factory([
-        response_factory(exception=exception, status=exception.status_code)
+        response_factory(exception=exception, status=exception.status_code),
     ])
 
     def __on_error(e):
@@ -387,15 +386,15 @@ def test_tier_configuration_service_should_return_custom_error_on_updating_param
             request,
             [{
                 'id': 'CAT_SUBSCRIPTION_ID',
-                'value': 'AS-0000-0000-0001'
+                'value': 'AS-0000-0000-0001',
             }],
-            on_error=__on_error
+            on_error=__on_error,
         )
 
 
 def test_tier_configuration_service_should_inquire_an_tier_configuration_request_custom_success(
         sync_client_factory,
-        response_factory
+        response_factory,
 ):
     tcr_id = 'TCR-0000-0000-0000-001'
     tc_id = 'TC-0000-0000-0000'
@@ -410,7 +409,7 @@ def test_tier_configuration_service_should_inquire_an_tier_configuration_request
     existing_request.with_tier_configuration(tier_configuration)
 
     client = sync_client_factory([
-        response_factory(value=existing_request.raw(), status=200)
+        response_factory(value=existing_request.raw(), status=200),
     ])
 
     tier_configuration = existing_request.tier_configuration()
@@ -425,7 +424,7 @@ def test_tier_configuration_service_should_inquire_an_tier_configuration_request
     connect = ConnectOpenAPIFacade(client)
     request = connect.inquire_tier_configuration_request(
         request,
-        on_success=lambda req: req
+        on_success=lambda req: req,
     )
 
     assert request.id() == tcr_id
@@ -435,18 +434,18 @@ def test_tier_configuration_service_should_inquire_an_tier_configuration_request
 
 def test_tier_configuration_service_should_fail_inquiring_an_tier_configuration_request(
         sync_client_factory,
-        response_factory
+        response_factory,
 ):
     exception = ClientError(
         message=BAD_REQUEST_400,
         status_code=400,
         error_code="REQ_003",
         errors=[
-            "For marking request to inquiring status at least one parameter should be marked as invalid."]
+            "For marking request to inquiring status at least one parameter should be marked as invalid."],
     )
 
     client = sync_client_factory([
-        response_factory(exception=exception, status=exception.status_code)
+        response_factory(exception=exception, status=exception.status_code),
     ])
 
     request = Request()
@@ -460,13 +459,13 @@ def test_tier_configuration_service_should_fail_inquiring_an_tier_configuration_
         ConnectOpenAPIFacade(client).inquire_asset_request(
             request,
             'TL-662-440-097',
-            on_error=__on_error
+            on_error=__on_error,
         )
 
 
 def test_tier_configuration_service_should_inquire_an_tier_configuration_request(
         sync_client_factory,
-        response_factory
+        response_factory,
 ):
     tcr_id = 'TCR-0000-0000-0000-001'
     tc_id = 'TC-0000-0000-0000'
@@ -481,7 +480,7 @@ def test_tier_configuration_service_should_inquire_an_tier_configuration_request
     existing_request.with_tier_configuration(tier_configuration)
 
     client = sync_client_factory([
-        response_factory(value=existing_request.raw(), status=200)
+        response_factory(value=existing_request.raw(), status=200),
     ])
 
     tier_configuration = existing_request.tier_configuration()
