@@ -148,8 +148,12 @@ class WithAssetFacade(AssetManagementService):
             INQUIRE: INQUIRING,
             FAIL: FAILED,
         }
+
         try:
-            self.client.requests[request.id()](status).post(payload=payload)
+            self.client.requests[request.id()](status).post(
+                # cleanup the none values of the payload.
+                payload={k: v for k, v in payload.items() if v is not None},
+            )
             return on_success(request.with_status(statuses.get(status)))
         except ClientError as e:
             return on_error(e)
