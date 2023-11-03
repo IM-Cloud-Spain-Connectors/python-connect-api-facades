@@ -8,7 +8,7 @@ readme = "README.md"
 packages = [
     { include = "rndi" }
 ]
-repository = ""
+
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Operating System :: OS Independent",
@@ -34,7 +34,7 @@ keywords = [
 [tool.poetry.dependencies]
 python = ">=3.8.1,<4"
 connect-openapi-client = "25.*"
-rndi-connect-business-objects = { git = "https://github.com/IM-Cloud-Spain-Connectors/python-connect-business-objects.git", tag = "v1.0.1" }
+rndi-connect-business-objects = { git = "https://github.com/IM-Cloud-Spain-Connectors/python-connect-business-objects.git", branch = "master" }
 
 [tool.poetry.dev-dependencies]
 pytest = "^7.2.0"
